@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Chat</title>
+</head>
+<body>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+        <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Kết nối tới server Socket.IO
+        const socket = io("http://localhost:3000/ketnoi");
+
+        // Lấy các phần tử DOM
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+
+        // Lắng nghe sự kiện 'chat message' từ server
+        socket.on('chat message', (msg) => {
+            const item = document.createElement('li');
+            item.textContent = msg;
+            document.getElementById('messages').appendChild(item);
+        });
+
+        // Sự kiện gửi tin nhắn
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (input.value) {
+                // Gửi tin nhắn tới server
+                socket.emit('chat message', input.value);
+                input.value = '';
+            }
+        });
+    </script>
+</body>
+</html>
