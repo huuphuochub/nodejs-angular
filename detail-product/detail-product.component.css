@@ -1,0 +1,159 @@
+.product-details {
+    position: fixed; /* Đảm bảo thẻ luôn hiển thị ở giữa màn hình */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999; /* Đảm bảo hiển thị trên các phần tử khác */
+    max-width: 90%; /* Đảm bảo thẻ không vượt quá chiều rộng của màn hình */
+    width: 800px; /* Chiều rộng cố định của thẻ */
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+  }
+  
+
+  
+  .buttons-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .ok-button, .cancel-button {
+    padding: 8px 20px;
+    text-align: end;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .ok-button {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .cancel-button {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  .input-test {
+    width: 100%;
+    height: 200px;
+    padding: 10px; /* Add padding for spacing */
+    box-sizing: border-box; /* Ensure padding is included in the height */
+    vertical-align: top; /* Align the text at the top */
+    text-align: left; /* Align text to the left */
+}
+.cancel{
+    background-color: red;
+    border-radius: 5px;
+    padding: 5px 15px;
+
+}
+.ok{
+    background-color: var(--web-color);
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+
+.usercoment i {
+  color: black;
+}
+
+.usercoment .fa-star{
+  color: yellow;
+}
+.date .fa-thumbs{
+  color: black;
+}
+.likecoment i{
+  padding: 10px;
+  color: black;
+}
+
+.usercoment {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  align-items: flex-start; /* Chuyển hình ảnh và nội dung lên đầu trang */
+}
+
+.usercoment img.img-fluid {
+  border-radius: 50%;
+  margin-right: 10px; /* Tạo khoảng cách giữa hình ảnh và nội dung */
+}
+
+.usercoment .likecoment {
+  margin-top: auto; /* Đảm bảo phần "likecoment" nằm dưới cùng */
+}
+
+.loadcoment button{
+  padding: 5px 10px;
+  background-color: yellow;
+  margin: 2px;
+  border-radius: 5px;
+}
+.loadcoment button:first-child{
+  background-color: #ccc;
+}
+.loadcoment button:last-child{
+  background-color: #ccc;
+}
+.replaycoment *{
+  margin: 10px 0 0 10px;
+}
+/* Modal container */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+  justify-content: center; 
+  align-items: center; 
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+/* Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Show modal */
+.modal.show {
+  display: flex;
+}
+

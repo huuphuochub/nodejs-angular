@@ -1,0 +1,438 @@
+<div class="container-fluid">
+    <div class="row px-xl-5">
+       <div class="col-12">
+          <nav class="breadcrumb bg-light mb-30">
+             <a class="breadcrumb-item text-dark" href="#">Home</a>
+             <a class="breadcrumb-item text-dark" href="#">Shop</a>
+             <span class="breadcrumb-item active">Shop Detail</span>
+          </nav>
+       </div>
+    </div>
+ </div>
+ <!-- Breadcrumb End -->
+ <!-- Shop Detail Start -->
+ <div class="container-fluid pb-5" *ngIf="data" >
+    <div class="row px-xl-5" id="chitietsp" *ngFor="let data of data">
+       <div class="col-lg-5 mb-30">
+          <div id="product-carousel" class="carousel slide" data-ride="carousel">
+             <div class="carousel-inner bg-light">
+                <div class="carousel-item active">
+                   <img class="w-100 h-100" src="{{data.image}}" alt="Image">
+                </div>
+                <!-- <div class="carousel-item">
+                   <img class="w-100 h-100" src="csss/img/product-2.jpg" alt="Image">
+                   </div>
+                   <div class="carousel-item">
+                   <img class="w-100 h-100" src="csss/img/product-3.jpg" alt="Image">
+                   </div>
+                   <div class="carousel-item">
+                   <img class="w-100 h-100" src="csss/img/product-4.jpg" alt="Image">
+                   </div> -->
+             </div>
+             <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+             <i class="fa fa-2x fa-angle-left text-dark"></i>
+             </a>
+             <a class="carousel-control-next" href="#product-carousel" data-slide="next">
+             <i class="fa fa-2x fa-angle-right text-dark"></i>
+             </a>
+          </div>
+       </div>
+       <div class="col-lg-7 h-auto mb-30">
+          <div class="h-100 bg-light p-30">
+             <h3>{{data.name}}</h3>
+             <div class="d-flex mb-3">
+                <div class="text-primary mr-2" *ngIf="saosp">
+                   {{saosp.sosao}} <small class="fas fa-star"></small>
+                </div>
+                {{saosp.soluot}} đánh giá
+
+                <!-- <small class="pt-1">{{data.quantity}}</small> -->
+             </div>
+             <h3 class="font-weight-semi-bold mb-4">{{data.price}}</h3>
+             <p class="mb-4">{{data.describes}}</p>
+             <div class="d-flex mb-3">
+                <strong class="text-dark mr-3">Sizes:</strong>
+                <form>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="size-1" name="size">
+                      <label class="custom-control-label" for="size-1">XS</label>
+                   </div>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="size-2" name="size">
+                      <label class="custom-control-label" for="size-2">S</label>
+                   </div>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="size-3" name="size">
+                      <label class="custom-control-label" for="size-3">M</label>
+                   </div>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="size-4" name="size">
+                      <label class="custom-control-label" for="size-4">L</label>
+                   </div>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="size-5" name="size">
+                      <label class="custom-control-label" for="size-5">XL</label>
+                   </div>
+                </form>
+             </div>
+             <div class="d-flex mb-4">
+                <strong class="text-dark mr-3">Colors:</strong>
+                <form>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="color-1" name="color">
+                      <label class="custom-control-label" for="color-1">Black</label>
+                   </div>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="color-2" name="color">
+                      <label class="custom-control-label" for="color-2">White</label>
+                   </div>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="color-3" name="color">
+                      <label class="custom-control-label" for="color-3">Red</label>
+                   </div>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="color-4" name="color">
+                      <label class="custom-control-label" for="color-4">Blue</label>
+                   </div>
+                   <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="color-5" name="color">
+                      <label class="custom-control-label" for="color-5">Green</label>
+                   </div>
+                </form> <br>
+             </div>
+             <p>số lượng còn lại: {{data.quantity}}</p>
+
+             <div class="d-flex align-items-center mb-4 pt-2">
+                <div class="input-group quantity mr-3" style="width: 130px;">
+                   <div class="input-group-btn">
+                      <button class="btn btn-primary btn-minus" (click)="mins(data.id_product)">
+                      <i class="fa fa-minus"></i>
+                      </button>
+                   </div>
+                   <input type="text" class="form-control bg-secondary border-0 text-center" value="{{soluong || 1}}">
+                   <div class="input-group-btn">
+                      <button class="btn btn-primary btn-plus" (click)="plus(data.id_product)">
+                      <i class="fa fa-plus"></i>
+                      </button>
+                   </div>
+                </div>
+                <button class="btn btn-primary px-3" (click)="addcart(data.id_product, data.price * soluong, data.name, soluong, data.image, data.id_user)"><i class="fa fa-shopping-cart mr-1"></i> Add To
+                Cart</button>
+             </div>
+             <h3>thành tiền {{data.price * soluong }}</h3>
+             <div>
+                <button class="btn btn-primary px-3" (click)="delete(data.id_product)">
+                xóa khỏi giỏ hàng</button>
+             </div>
+             <div class="d-flex pt-2">
+                <strong class="text-dark mr-2">Share on:</strong>
+                <div class="d-inline-flex">
+                   <a class="text-dark px-2" href="">
+                   <i class="fab fa-facebook-f"></i>
+                   </a>
+                   <a class="text-dark px-2" href="">
+                   <i class="fab fa-twitter"></i>
+                   </a>
+                   <a class="text-dark px-2" href="">
+                   <i class="fab fa-linkedin-in"></i>
+                   </a>
+                   <a class="text-dark px-2" href="">
+                   <i class="fab fa-pinterest"></i>
+                   </a>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div *ngIf="showDetails" class="product-details">
+       <!-- Thông tin chi tiết về sản phẩm -->
+       <p> tên sản phẩm : {{nameproduct}}</p>
+       <p>hình: <img src="{{imgae_product}}" alt="" width="200px"></p>
+       <p>Số lượng: {{soluongs}}</p>
+       <p>Thành tiền : {{price}}</p>
+       <!-- Các thông tin khác về sản phẩm -->
+       <!-- Nút OK và Hủy -->
+       <div class="buttons-container">
+          <button class="ok-button" (click)="addsubmit()">OK</button>
+          <button class="cancel-button" (click)="cancelsubmut()">Hủy</button>
+       </div>
+    </div>
+    <div class="row px-xl-5">
+       <div class="col">
+          <div class="bg-light p-30">
+             <div class="nav nav-tabs mb-4">
+                <a class="nav-item nav-link text-dark active" data-toggle="tab" (click)="descriptionevent()">Description</a>
+                <a class="nav-item nav-link text-dark" data-toggle="tab" (click)="comentevent(1)">bình luận</a>
+                <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+             </div>
+             <div class="tab-content">
+                <div class="tab-pane fade show active" id="tab-pane-1" *ngIf="description">
+                   <h4 class="mb-3">Product Description</h4>
+                   <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                   <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                </div>
+                <div class="tab-pane fade show active" id="tab-pane-1" *ngIf="coment">
+                   <form  [formGroup]="comentform" (ngSubmit)="onSubmitaddcoment()">
+                   <h4 class="mb-3">bình luận của bạn</h4>
+                   <textarea class="input-test" formControlName="content"></textarea>
+                   <br>
+                   đánh giá của bạn: 
+                   <i *ngFor="let star of stars; let i = index" (click)="onClickstar(i)" [ngClass]="star ? 'fas fa-star' : 'far fa-star'"></i>
+                   <br> <br>
+                   <h4>thêm hình ảnh</h4>
+                   <br>
+                   <input type="file" (change)="onFileChange($event)"><br> <br>
+                   <button class="cancel">hủy</button><button class="ok" style="background-color: yellow;" type="submit">đăng</button>
+                   </form>
+                   <!-- **************************COMENT********************************** -->
+                   <div>
+                      <h4 *ngIf="cmthoanchinh">{{saosp.soluot}} đánh giá</h4>
+                      <!-- ***********************bat dau 1 user*************************** -->
+                      <div class="usercoment" *ngFor="let cmthoanchinh of cmthoanchinh; let i = index" >
+                        <img *ngIf="cmthoanchinh.image_user" src="{{ cmthoanchinh.image_user }}" alt="User Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                        <img *ngIf="!cmthoanchinh.image_user" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm-m_gqA429ZMSmcQet4WjV6N4f7xE_B31PQ&s" alt="Default Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+ 
+
+                         <div class="">
+                            <h6>{{cmthoanchinh.name}}<small> - <i class="date">{{cmthoanchinh.date}}</i></small></h6>
+                            <div class="" *ngIf="cmthoanchinh.star == 1">
+                               <i class="fas fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>      
+                               <i class="far fa-star"></i>  
+                               <i class="far fa-star"></i>
+                            </div>
+                            <div class="" *ngIf="cmthoanchinh.star == 2">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>      
+                                <i class="far fa-star"></i>  
+                                <i class="far fa-star"></i>
+                             </div>
+                             <div class="" *ngIf="cmthoanchinh.star == 3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>      
+                                <i class="far fa-star"></i>  
+                                <i class="far fa-star"></i>
+                             </div>
+                             <div class="" *ngIf="cmthoanchinh.star == 4">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>      
+                                <i class="fas fa-star"></i>  
+                                <i class="far fa-star"></i>
+                             </div>
+                             <div class="" *ngIf="cmthoanchinh.star == 5">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>      
+                                <i class="fas fa-star"></i>  
+                                <i class="fas fa-star"></i>
+                             </div>
+                            <p>{{cmthoanchinh.content}}</p>
+                         </div>
+                         <br>
+                         <img *ngIf="cmthoanchinh.image" src="{{ cmthoanchinh.image }}" style="width: 100px;">
+                         <div class="likecoment">
+                            <i class="far fa-thumbs-up" (click)="like(cmthoanchinh.id_coment)" *ngIf="!cmthoanchinh.id_userlike.includes(cmthoanchinh.id_userreal)"></i>
+                            <!-- <i class="fas fa-thumbs-up"></i> -->
+                            <i class="fas fa-thumbs-up" (click)="huylike(cmthoanchinh.id_likecoment)" *ngIf="cmthoanchinh.id_userlike.includes(cmthoanchinh.id_userreal)"></i>{{cmthoanchinh.like}}
+
+                            <i class="far fa-thumbs-down" (click)="dislikecmt(cmthoanchinh.id_coment)" *ngIf="!cmthoanchinh.id_userdislike.includes(cmthoanchinh.id_userreal)"></i>
+                            <!-- <i class="fas fa-thumbs-down"></i> -->
+                            <i class="fas fa-thumbs-down" (click)="huydislikecmt(cmthoanchinh.id_likecoment)" *ngIf="cmthoanchinh.id_userdislike.includes(cmthoanchinh.id_userreal)"></i> {{cmthoanchinh.dislike}} 
+
+                            <i class="fas fa-comment-dots" (click)="taophanhoi(cmthoanchinh.id_coment)">{{cmthoanchinh.replaycoment}}</i>
+                            
+                            <a *ngIf="(cmthoanchinh.replaycoment >= 1)" (click)="xemphanhoi(cmthoanchinh.id_coment)">xem phản hồi</a>
+                           
+                           <i *ngIf="(cmthoanchinh.id_usercmt == cmthoanchinh.id_userreal)" class="fas fa-trash-alt" (click)="xoacmt(cmthoanchinh.id_coment)"></i>
+                         </div>  
+                         <div *ngIf="replayComments[cmthoanchinh.id_coment] && replayComments[cmthoanchinh.id_coment].length > 0" style="margin: 0 0 10px 0;">
+                           <i  (click)="dongreply(cmthoanchinh.id_coment)">đóng</i>
+
+                         <div class="replaycoment" style="border: 1px solid rgb(219, 237, 184); margin: 0 0 10px 90px; border-radius: 5px; background-color: rgb(252, 251, 249);" *ngFor="let replaycoment of replayComments[cmthoanchinh.id_coment]">
+                           <img *ngIf="replaycoment.image_user" src="{{ replaycoment.image_user }}" alt="User Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                           <img *ngIf="!replaycoment.image_user" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm-m_gqA429ZMSmcQet4WjV6N4f7xE_B31PQ&s" alt="Default Image" class="img-fluid mr-3 mt-1" style="width: 45px;"> 
+                           <br>                          
+                           <i style="font: bolder;">{{replaycoment.name}}</i> <i>{{replaycoment.date}}</i>
+                           <p>{{replaycoment.content}}</p>
+                           <i *ngIf="replaycoment.id_userreply == cmthoanchinh.id_userreal" class="fas fa-trash-alt" (click)="xoaphanhoi(replaycoment.id_replaycmt, cmthoanchinh.id_coment)"></i>
+
+                         </div>
+                        </div>
+                      </div>
+                      <!-- /////////////////////////////két thuc 1 user//////////////////////// -->
+                      <!-- 88888888888888888888888888888 ;;;;;;;;;;;;;;;;;;;;;;;;; -->
+                      
+                      <!-- khsdjf ksjdgfffffffffffff jshkdfffffffffffffffff -->
+
+                <div class="loadcoment">
+                    <button><</button>
+                    <button  (click)="comentevent(1)">1</button>
+                    <button  (click)="comentevent(2)">2</button>
+                    <button  (click)="comentevent(3)">3</button>
+                    <button  (click)="comentevent(4)">4</button>
+
+                    
+                    <button>></button>
+                </div>
+
+
+
+                   </div>
+                   <!-- ****************************ENDCOMETN********************************* -->
+                </div>
+                <br>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+ <div class="modal" [ngClass]="{'show': isModalOpen}">
+   <div class="modal-content">
+     <span class="close" (click)="closeModal()">&times;</span>
+     <form [formGroup]="replyForm" (ngSubmit)="onSubmitreply()">
+       <label for="reply">Phản hồi</label>
+       <textarea class="input-text" formControlName="reply" id="reply"></textarea>
+       <button type="submit">Gửi</button>
+     </form>
+   </div>
+ </div>
+ <!-- Shop Detail End -->
+ <!-- Products Start -->
+ <!-- <div class="container-fluid py-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">You May Also Like</span></h2>
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel related-carousel">
+                <div class="product-item bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="csss/img/product-1.jpg" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="csss/img/product-2.jpg" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="csss/img/product-3.jpg" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="csss/img/product-4.jpg" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item bg-light">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="csss/img/product-5.jpg" alt="">
+                        <div class="product-action">
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                    <div class="text-center py-4">
+                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small class="fa fa-star text-primary mr-1"></small>
+                            <small>(99)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div> -->
